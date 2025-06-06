@@ -1,0 +1,232 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap");
+
+/* Reset dan Pengaturan Dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden; /* Mencegah scroll horizontal */
+}
+
+/* Kontainer Utama */
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hero Section dengan Gambar Latar */
+.hero {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("../assets/bg-blue.jpg"); /* Anda bisa ganti dengan URL gambar latar Anda */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.overlay {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Overlay putih transparan agar teks mudah dibaca */
+  padding: 40px 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Judul dan Subjudul */
+.subtitle {
+  font-size: 1.5rem;
+  color: #5c5c5c;
+  margin-bottom: 20px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.title {
+  font-family: "Great Vibes", cursive;
+  font-size: 5rem;
+  color: #31496a; /* Diubah */
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-weight: normal;
+}
+
+/* Foto Mempelai */
+.couple-photos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.couple-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #31496a; /* Diubah */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+/* Kotak Undangan untuk Tamu */
+.invitation-box {
+  margin: 30px auto;
+  padding: 20px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.to,
+.guest,
+.location {
+  font-size: 1rem;
+  color: #555;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin: 10px 0;
+}
+
+/* Tombol */
+#openBtn {
+  font-family: "Montserrat", sans-serif;
+  background-color: #31496a; /* Diubah */
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(49, 73, 106, 0.5); /* Diubah */
+  margin-top: 10px;
+}
+
+#openBtn:hover {
+  background-color: #2a3f5a; /* Diubah (versi lebih gelap untuk hover) */
+  transform: translateY(-2px);
+}
+
+/* Countdown Section */
+.countdown-section {
+  margin-top: 40px;
+}
+
+.countdown-title {
+  font-size: 1.2rem;
+  color: #5c5c5c;
+  margin-bottom: 20px;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.countdown > div {
+  background-color: #31496a; /* Diubah */
+  color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.countdown > div:hover {
+  transform: scale(1.05);
+}
+
+.countdown span {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.countdown small {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+/* Tombol Suara */
+#soundToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Responsif untuk Layar Kecil (Mobile) */
+@media (max-width: 768px) {
+  .overlay {
+    padding: 30px 15px;
+  }
+
+  .title {
+    font-size: 3.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .couple-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .countdown {
+    gap: 10px;
+  }
+
+  .countdown > div {
+    padding: 10px;
+    width: 65px;
+  }
+
+  .countdown span {
+    font-size: 1.8rem;
+  }
+
+  .countdown small {
+    font-size: 0.7rem;
+  }
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Invitation - Rusdi & Qolbi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="hero">
+        <div class="overlay">
+          <h2 class="subtitle">Walimatul 'Urs</h2>
+          <div class="couple-photos">
+            <img
+              src="./assets/img1.png"
+              alt="Foto Mempelai Pria"
+              class="couple-photo"
+            />
+            <img
+              src="./assets/img2.png"
+              alt="Foto Mempelai Wanita"
+              class="couple-photo"
+            />
+          </div>
+          <h1 class="title">Rusdi & Qolbi</h1>
+          <div class="invitation-box">
+            <p class="to">Kepada Yth.</p>
+            <p class="guest">Bapak/Ibu/Saudara/i</p>
+            <p class="name" id="guestName">Nama Tamu</p>
+            <p class="location">di Tempat</p>
+          </div>
+          <button id="openBtn">Open Invitation</button>
+          <div class="countdown-section">
+            <h3 class="countdown-title">Menuju Hari Bahagia</h3>
+            <div class="countdown">
+              <div><span id="days">00</span><small>Hari</small></div>
+              <div><span id="hours">00</span><small>Jam</small></div>
+              <div><span id="minutes">00</span><small>Menit</small></div>
+              <div><span id="seconds">00</span><small>Detik</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sound Icon -->
+    <button id="soundToggle">🔊</button>
+    <script src="./Index.js"></script>
+    <script>
+      // Fungsi untuk mengambil parameter dari URL
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      // Ambil nama dari parameter 'to' di URL
+      const namaTamu = getQueryParam("to");
+
+      // Tampilkan di elemen dengan ID 'guestName'
+      const elemenNama = document.getElementById("guestName");
+      if (namaTamu) {
+        const namaFormatted = decodeURIComponent(namaTamu.replace(/\+/g, " "));
+        elemenNama.textContent = namaFormatted;
+      } else {
+        elemenNama.textContent = "Tamu Undangan";
+      }
+    </script>
+  </body>
+</html>

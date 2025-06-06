@@ -1,0 +1,452 @@
+/* --- Reset & Dasar --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fafafa;
+  color: #4f4f4f;
+  text-align: center;
+  line-height: 1.8;
+  font-family: "Poppins", sans-serif; /* MODIFIKASI: Font utama diubah */
+}
+
+/* --- Font & Warna Utama --- */
+:root {
+  --primary-color: #31496a;
+  --primary-darker: #2a3f5a;
+  --secondary-color: #5c5c5c;
+  --title-font: "Great Vibes", cursive;
+  --body-font: "Poppins", sans-serif; /* MODIFIKASI: Font utama diubah */
+}
+
+/* --- Animasi "WOW" --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animated {
+  animation: fadeInUp 1s ease-out forwards;
+  opacity: 0;
+}
+
+/* --- Kontainer Utama --- */
+.main-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background-image: url("../assets/bg-blue.jpg");
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.07); /* WOW: Shadow lebih halus */
+}
+
+.text-box {
+  padding: 50px 20px;
+}
+
+.greeting,
+.invitation-text,
+.quote,
+.surah {
+  font-size: 1rem; /* MODIFIKASI: Sedikit lebih besar */
+  color: var(--secondary-color);
+  margin-bottom: 1.5em;
+  font-weight: 300; /* WOW: Teks lebih ramping */
+}
+
+.quote {
+  font-style: italic;
+  margin-top: 30px;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.surah {
+  font-weight: 500;
+  margin-top: -10px;
+}
+
+.wedding-title {
+  margin: 30px 0;
+}
+
+.groom-name,
+.bride-name {
+  font-family: var(--title-font);
+  font-size: 4rem; /* MODIFIKASI: Diperbesar */
+  color: var(--primary-color);
+  font-weight: normal;
+}
+
+.and-symbol {
+  font-family: var(--title-font);
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin: -20px 0;
+}
+
+.divider {
+  width: 150px;
+  height: auto;
+  opacity: 0.6;
+  margin: 20px 0;
+}
+
+/* --- Bagian Foto & Detail Pasangan --- */
+.invitation-section {
+  padding: 60px 20px;
+  background-color: #fafafa;
+}
+
+.photo-container {
+  margin-bottom: 30px;
+}
+
+.invitation-photo {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 50%;
+  border: 10px solid #fff;
+  /* WOW: Shadow lebih dalam dan sesuai tema */
+  box-shadow: 0 15px 35px rgba(49, 73, 106, 0.2);
+}
+
+.couple-details .name {
+  font-family: var(--title-font);
+  font-size: 3rem; /* MODIFIKASI: Diperbesar */
+  color: var(--primary-color);
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+
+.couple-details .desc {
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.instagram-tag a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.and-divider {
+  font-family: var(--title-font);
+  font-size: 3.5rem;
+  color: var(--primary-color);
+  margin: 20px 0;
+}
+
+/* --- Section Card (Akad, Resepsi, dll) --- */
+.event-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 50px 20px;
+}
+
+.section {
+  background: #fff;
+  border-radius: 20px; /* WOW: Lebih rounded */
+  padding: 40px;
+  margin: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08); /* WOW: Shadow lebih halus */
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* WOW: Efek hover */
+}
+
+/* WOW: Efek hover kartu */
+.section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+}
+
+.event-container .section {
+  flex: 1;
+  min-width: 280px;
+  margin: 0;
+}
+
+.heading {
+  font-family: var(--title-font);
+  font-size: 2.8rem; /* MODIFIKASI: Diperbesar */
+  color: #ffc400;
+  font-weight: normal;
+  margin-bottom: 25px;
+  position: relative; /* WOW: Untuk garis dekoratif */
+}
+
+/* WOW: Garis dekoratif pada judul */
+.heading::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 2px;
+  background: var(--primary-color);
+  margin: 15px auto 0 auto;
+  opacity: 0.7;
+}
+
+.section p {
+  color: var(--secondary-color);
+  font-size: 1.05rem; /* MODIFIKASI: Sedikit diperbesar */
+  font-weight: 400;
+}
+
+/* --- Countdown --- */
+.countdown-section {
+  /* WOW: Background gradien */
+  background: linear-gradient(
+    135deg,
+    var(--primary-darker),
+    var(--primary-color)
+  );
+  color: #fff;
+}
+
+.countdown-section .heading::after {
+  background: #fff; /* WOW: Garis dekoratif putih */
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.countdown > div {
+  background: rgba(255, 255, 255, 0.15); /* MODIFIKASI: Lebih terlihat */
+  border-radius: 15px; /* MODIFIKASI: Lebih rounded */
+  padding: 15px;
+  width: 90px;
+  backdrop-filter: blur(5px); /* WOW: Efek glass */
+}
+
+.countdown span {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.countdown small {
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/* --- Map, Gallery, RSVP, Gift --- */
+.map {
+  width: 100%;
+  height: 350px;
+  border: none;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.map-button,
+#rsvpForm button,
+.gift-item button,
+.qr-section a {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-darker)
+  ); /* WOW: Gradien pada tombol */
+  color: #fff;
+  padding: 14px 35px;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(49, 73, 106, 0.3);
+  transition: all 0.3s ease;
+}
+
+.map-button:hover,
+#rsvpForm button:hover,
+.gift-item button:hover,
+.qr-section a:hover {
+  transform: translateY(-3px) scale(1.05); /* WOW: Efek hover 3D */
+  box-shadow: 0 8px 20px rgba(49, 73, 106, 0.4);
+}
+
+.moment-section {
+  padding: 60px 15px;
+  background-color: #fafafa;
+}
+
+.moment-heading {
+  font-family: var(--title-font);
+  font-size: 4rem;
+  color: var(--primary-color);
+  margin-bottom: 30px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: all 0.4s ease;
+}
+.gallery-item img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+#rsvpForm input,
+#rsvpForm textarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-family: var(--body-font);
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+#rsvpForm input:focus,
+#rsvpForm textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.gift-item {
+  background-color: #fafafa;
+  border: 1px solid #eee;
+  padding: 25px;
+  border-radius: 15px;
+  max-width: 340px;
+  /* TAMBAHKAN BARIS INI untuk membuatnya ke tengah secara horizontal */
+  margin-left: auto;
+  margin-right: auto;
+  /* Menambahkan margin bawah agar ada jarak jika ada item lain di bawahnya */
+  margin-bottom: 20px;
+}
+.bank-info .account-number {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* --- Closing & Footer --- */
+.closing-wrapper {
+  background: linear-gradient(
+    135deg,
+    var(--primary-darker),
+    var(--primary-color)
+  );
+  color: #fff;
+  padding: 60px 20px;
+}
+
+.closing-wrapper p {
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 1em;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.closing-names {
+  font-family: var(--title-font);
+  font-size: 3rem;
+  margin-top: 30px;
+}
+
+.site-footer {
+  padding: 25px;
+  font-size: 1.2rem;
+  color: #fafafa;
+}
+
+/* --- Tombol Suara --- */
+#soundToggle {
+  /* Sama seperti sebelumnya, sudah bagus */
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* --- Media Queries untuk Responsif --- */
+@media (max-width: 768px) {
+  /* MODIFIKASI: Ukuran font mobile diperbesar */
+  body {
+    font-size: 18px; /* Set base font size */
+    background-image: url("../assets/bg-blue.jpg");
+  }
+
+  .groom-name,
+  .bride-name {
+    font-size: 3rem;
+  }
+  .and-symbol {
+    font-size: 2.2rem;
+  }
+  .heading {
+    font-size: 2.5rem;
+  }
+  .moment-heading {
+    font-size: 3rem;
+  }
+
+  .section {
+    margin: 15px;
+    padding: 25px;
+  }
+  .text-box {
+    padding: 40px 15px;
+  }
+
+  /* MODIFIKASI: Ukuran font paragraf di mobile */
+  .greeting,
+  .invitation-text,
+  .quote,
+  .surah,
+  .section p,
+  .couple-details .desc {
+    font-size: 1.3rem;
+  }
+
+  .countdown > div {
+    width: 75px;
+    padding: 12px;
+  }
+  .countdown span {
+    font-size: 2rem;
+  }
+}
