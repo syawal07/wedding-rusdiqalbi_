@@ -177,7 +177,7 @@ html {
 .groom-name {
   font-family: var(--font-heading);
   font-size: clamp(
-    3rem,
+    2.3rem,
     10vw,
     4.5rem
   ); /* Disesuaikan untuk jangkauan lebih luas */
@@ -311,26 +311,40 @@ html {
 }
 
 /* --- Countdown --- */
+/* --- Countdown --- [DIUBAH] Dibuat tidak membungkus di mobile */
 .countdown {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: clamp(8px, 2.5vw, 15px); /* Jarak disesuaikan agar pas */
   margin-top: 20px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Mencegah item pindah baris */
 }
 .countdown div {
-  background: transparent;
-  min-width: 80px;
+  background-color: var(--light-navy);
+  border: 1px solid rgba(224, 196, 143, 0.2);
+  padding: clamp(8px, 2.5vw, 15px);
+  border-radius: 8px;
+  text-align: center;
+  flex-grow: 1; /* Biarkan item membagi ruang */
+  flex-basis: 0; /* Mulai dari basis nol agar pembagian rata */
+  max-width: 100px;
+  transition: all var(--transition-speed) ease;
+}
+.countdown div:hover {
+  transform: translateY(-5px);
+  border-color: var(--golden-glow);
 }
 .countdown span {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 7vw, 2.5rem); /* Ukuran angka disesuaikan */
   color: var(--golden-glow);
+  line-height: 1.1;
+  display: block;
 }
 .countdown small {
-  font-size: 0.8rem;
+  font-size: clamp(0.6rem, 2vw, 0.75rem); /* Ukuran teks disesuaikan */
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   color: var(--slate);
 }
 
@@ -541,6 +555,7 @@ form button:hover::before,
   .bride-name,
   .groom-name {
     line-height: 1.3; /* Mencegah tumpang tindih pada layar sangat kecil */
+    font-size: 2rem;
   }
 
   .couple-details .name {
@@ -571,9 +586,7 @@ form button:hover::before,
   }
 }
 
+/* [DIUBAH] Footer dibuat ke tengah */
 .site-footer {
-  padding: 40px 20px 20px 20px;
-  color: var(--slate);
-  font-size: 0.95rem;
-  align-items: center;
+  text-align: center;
 }
