@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,15 +7,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Poppins:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <div class="container">
-      <div class="hero">
-        <div class="overlay">
+      <main class="hero">
+        <div class="card">
           <h2 class="subtitle">Walimatul 'Urs</h2>
           <div class="couple-photos">
             <img
@@ -31,12 +31,11 @@
           </div>
           <h1 class="title">Rusdi & Qolbi</h1>
           <div class="invitation-box">
-            <p class="to">Kepada Yth.</p>
-            <p class="guest">Bapak/Ibu/Saudara/i</p>
+            <p class="to">Kepada Yth. Bapak/Ibu/Saudara/i</p>
             <p class="name" id="guestName">Nama Tamu</p>
             <p class="location">di Tempat</p>
           </div>
-          <button id="openBtn">Open Invitation</button>
+          <button id="openBtn">Buka Undangan</button>
           <div class="countdown-section">
             <h3 class="countdown-title">Menuju Hari Bahagia</h3>
             <div class="countdown">
@@ -47,10 +46,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </div>
 
-    <!-- Sound Icon -->
     <button id="soundToggle">🔊</button>
     <script src="./Index.js"></script>
     <script>
@@ -61,16 +59,34 @@
       }
 
       // Ambil nama dari parameter 'to' di URL
-      const namaTamu = getQueryParam("to");
+      const guestName = getQueryParam("to");
 
       // Tampilkan di elemen dengan ID 'guestName'
-      const elemenNama = document.getElementById("guestName");
-      if (namaTamu) {
-        const namaFormatted = decodeURIComponent(namaTamu.replace(/\+/g, " "));
-        elemenNama.textContent = namaFormatted;
+      const guestNameElement = document.getElementById("guestName");
+      if (guestName) {
+        // Ganti '+' dengan spasi dan decode URI component
+        const formattedName = decodeURIComponent(guestName.replace(/\+/g, " "));
+        guestNameElement.textContent = formattedName;
       } else {
-        elemenNama.textContent = "Tamu Undangan";
+        guestNameElement.textContent = "Tamu Undangan"; // Default jika tidak ada nama
       }
+    </script>
+    <script>
+      function createParticles() {
+        const particleContainer = document.querySelector(".particles");
+        const particleCount = 100;
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.classList.add("particle");
+          const size = Math.random() * 3 + 1;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.top = `${Math.random() * 100}%`;
+          particleContainer.appendChild(particle);
+        }
+      }
+      window.onload = createParticles;
     </script>
   </body>
 </html>

@@ -1,4 +1,23 @@
-/* --- Reset & Dasar --- */
+/* [REDESIGN TOTAL] Import Google Fonts yang artistik dan mewah */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Inter:wght@300;400;500&display=swap");
+
+/* [REDESIGN] Variabel CSS untuk tema "Golden Midnight" */
+:root {
+  --dark-navy: #0a192f; /* Biru malam yang sangat gelap */
+  --light-navy: #112240; /* Biru malam untuk aksen dan latar elemen */
+  --golden-glow: #e0c48f; /* Emas yang lebih lembut dan elegan */
+  --light-slate: #ccd6f6; /* Warna teks utama (putih kebiruan) */
+  --slate: #ffffff; /* Warna teks sekunder - Untuk teks yang kurang penting */
+  --white: #ffffff;
+  --transition-speed: 0.4s;
+
+  --font-heading: "Cinzel Decorative", serif;
+  --font-body: "Inter", sans-serif;
+
+  --shadow-glow: 0 0 25px rgba(224, 196, 143, 0.2);
+}
+
+/* --- Global Styling --- */
 * {
   margin: 0;
   padding: 0;
@@ -9,25 +28,50 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  background-color: #fafafa;
-  color: #4f4f4f;
-  text-align: center;
-  line-height: 1.8;
-  font-family: "Poppins", sans-serif; /* MODIFIKASI: Font utama diubah */
+body,
+html {
+  font-family: var(--font-body);
+  background-color: var(--dark-navy);
+  color: var(--light-slate);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
 }
 
-/* --- Font & Warna Utama --- */
-:root {
-  --primary-color: #31496a;
-  --primary-darker: #2a3f5a;
-  --secondary-color: #5c5c5c;
-  --title-font: "Great Vibes", cursive;
-  --body-font: "Poppins", sans-serif; /* MODIFIKASI: Font utama diubah */
+/* --- Animasi & Efek Visual --- */
+/* Animasi Partikel Emas di Latar Belakang */
+@keyframes move-particles {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100vh);
+  }
 }
 
-/* --- Animasi "WOW" --- */
-@keyframes fadeInUp {
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200vh;
+  pointer-events: none;
+  z-index: 0;
+  animation: move-particles 60s linear infinite;
+}
+
+.particle {
+  position: absolute;
+  background: var(--golden-glow);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+/* [DIUBAH] Animasi Fade-in berurutan untuk elemen */
+@keyframes fadeInSlideUp {
   from {
     opacity: 0;
     transform: translateY(30px);
@@ -37,416 +81,449 @@ body {
     transform: translateY(0);
   }
 }
-.animated {
-  animation: fadeInUp 1s ease-out forwards;
-  opacity: 0;
-}
 
-/* --- Kontainer Utama --- */
-.main-content {
-  max-width: 800px;
-  margin: 0 auto;
-  background-image: url("../assets/bg-blue.jpg");
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.07); /* WOW: Shadow lebih halus */
-}
-
-.text-box {
-  padding: 50px 20px;
-}
-
+/* Menerapkan animasi ke elemen yang diinginkan */
 .greeting,
+.wedding-title,
 .invitation-text,
 .quote,
-.surah {
-  font-size: 1rem; /* MODIFIKASI: Sedikit lebih besar */
-  color: var(--secondary-color);
-  margin-bottom: 1.5em;
-  font-weight: 300; /* WOW: Teks lebih ramping */
+.invitation-section,
+.event-wrapper,
+.gallery-wrapper,
+#rsvpForm,
+.gift-list,
+.closing-wrapper,
+.site-footer {
+  opacity: 0; /* Mulai dari tidak terlihat */
+  animation: fadeInSlideUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
+/* Mengatur delay agar elemen muncul satu per satu */
+.greeting {
+  animation-delay: 0.3s;
+}
+.wedding-title {
+  animation-delay: 0.5s;
+}
+.invitation-text {
+  animation-delay: 0.7s;
+}
 .quote {
-  font-style: italic;
-  margin-top: 30px;
-  font-size: 1.1rem;
-  font-weight: 400;
+  animation-delay: 0.9s;
+}
+.invitation-section {
+  animation-delay: 1.1s;
+}
+.event-wrapper {
+  animation-delay: 1.3s;
+}
+.gallery-wrapper {
+  animation-delay: 1.5s;
+} /* [DIUBAH] Target ke wrapper */
+#rsvpForm {
+  animation-delay: 1.7s;
+}
+.gift-list {
+  animation-delay: 1.9s;
+}
+.closing-wrapper {
+  animation-delay: 2.1s;
+}
+.site-footer {
+  animation-delay: 2.3s;
 }
 
-.surah {
-  font-weight: 500;
-  margin-top: -10px;
+/* --- Struktur Utama --- */
+.main-content {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.text-box,
+.invitation-section,
+.event-wrapper,
+.gallery-wrapper,
+.section,
+.closing-wrapper {
+  background-color: transparent;
+  padding: 40px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(136, 146, 176, 0.2);
+  text-align: center;
+}
+
+.closing-wrapper,
+.site-footer {
+  border-bottom: none;
+}
+
+/* --- Header Section --- */
+.greeting,
+.wassalam {
+  font-family: "Lora", serif; /* Menggunakan Lora, dengan fallback serif */
+  color: var(--slate);
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 1em;
 }
 
 .wedding-title {
   margin: 30px 0;
 }
 
-.groom-name,
-.bride-name {
-  font-family: var(--title-font);
-  font-size: 4rem; /* MODIFIKASI: Diperbesar */
-  color: var(--primary-color);
-  font-weight: normal;
+.bride-name,
+.groom-name {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 10vw, 4rem);
+  font-weight: 700;
+  color: var(--light-slate);
+  line-height: 1.2;
 }
 
 .and-symbol {
-  font-family: var(--title-font);
-  font-size: 3rem;
-  color: var(--primary-color);
-  margin: -20px 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  color: var(--golden-glow);
+  margin: 10px 0;
+  line-height: 1;
 }
 
-.divider {
-  width: 150px;
-  height: auto;
-  opacity: 0.6;
-  margin: 20px 0;
+.invitation-text,
+.quote,
+.desc,
+.gift-intro,
+.closing-wrapper p,
+.event-container p {
+  /* REKOMENDASI UKURAN FONT: Sedikit lebih besar dan responsif */
+  font-size: clamp(1.05rem, 1rem + 0.5vw, 1.3rem);
+
+  /* REKOMENDASI UTAMA: Gunakan ketebalan standar untuk readability */
+  font-weight: 400; /* WAJIB diubah dari 300 ke 400 */
+
+  /* REKOMENDASI UTAMA: Gunakan warna dengan kontras yang baik */
+  color: var(--slate); /* Ganti dari --light-slate ke warna lebih gelap */
+
+  /* Jarak antar baris yang ideal agar teks "bernafas" */
+  line-height: 1.8;
+
+  /* Sentuhan elegan: sedikit jarak antar huruf */
+  letter-spacing: 0.2px;
+
+  /* Batasan lebar dan centering untuk kolom teks yang ideal */
+  max-width: 55ch; /* 'ch' adalah unit karakter, lebih ideal untuk teks */
+  margin-inline: auto; /* Cara modern untuk 'margin-left/right: auto' */
 }
 
-/* --- Bagian Foto & Detail Pasangan --- */
-.invitation-section {
-  padding: 60px 20px;
-  background-color: #fafafa;
+/* Styling khusus agar kutipan (quote) lebih menonjol */
+.quote {
+  font-style: italic;
+  text-wrap: balance; /* Menyeimbangkan baris teks (untuk browser modern) */
 }
 
+.quote {
+  font-style: italic;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: var(--slate);
+}
+
+.surah {
+  font-weight: 700;
+  color: var(--golden-glow);
+  margin-top: 5px;
+  display: block;
+  font-size: 1.3rem;
+}
+
+/* --- Couple Section --- */
 .photo-container {
-  margin-bottom: 30px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 25px auto;
+  border: 3px solid var(--golden-glow);
+  padding: 5px;
+  background-color: var(--dark-navy);
+  box-shadow: var(--shadow-glow);
+  transition: box-shadow var(--transition-speed) ease;
+}
+.photo-container:hover {
+  box-shadow: 0 0 35px rgba(224, 196, 143, 0.4);
 }
 
 .invitation-photo {
   width: 100%;
-  max-width: 350px;
+  height: 100%;
+  object-fit: cover;
   border-radius: 50%;
-  border: 10px solid #fff;
-  /* WOW: Shadow lebih dalam dan sesuai tema */
-  box-shadow: 0 15px 35px rgba(49, 73, 106, 0.2);
 }
 
 .couple-details .name {
-  font-family: var(--title-font);
-  font-size: 3rem; /* MODIFIKASI: Diperbesar */
-  color: var(--primary-color);
-  font-weight: normal;
-  margin-bottom: 10px;
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 6vw, 2.8rem);
+  color: var(--light-slate);
+  margin-bottom: 5px;
 }
 
-.couple-details .desc {
-  font-size: 1.1rem;
-  color: var(--secondary-color);
-  line-height: 1.7;
-  font-weight: 300;
-}
-
-.instagram-tag a {
-  text-decoration: none;
-  color: var(--primary-color);
-  font-weight: 500;
-  font-size: 1rem;
-  transition: 0.3s;
+.desc {
+  margin-top: 5px;
+  color: var(--slate);
 }
 
 .and-divider {
-  font-family: var(--title-font);
-  font-size: 3.5rem;
-  color: var(--primary-color);
-  margin: 20px 0;
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--golden-glow);
+  margin: 30px 0;
 }
 
-/* --- Section Card (Akad, Resepsi, dll) --- */
+/* --- Section Heading --- */
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 7vw, 3rem);
+  color: var(--light-slate);
+  margin-bottom: 30px;
+}
+
+/* --- Event Section --- */
 .event-container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  padding: 50px 20px;
+  gap: 30px;
+  flex-wrap: wrap;
 }
-
-.section {
-  background: #fff;
-  border-radius: 20px; /* WOW: Lebih rounded */
-  padding: 40px;
-  margin: 20px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08); /* WOW: Shadow lebih halus */
-  width: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* WOW: Efek hover */
-}
-
-/* WOW: Efek hover kartu */
-.section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
-}
-
 .event-container .section {
+  padding: 30px;
+  margin: 0;
+  border: 1px solid rgba(224, 196, 143, 0.2);
+  border-radius: 8px;
   flex: 1;
   min-width: 280px;
-  margin: 0;
+  background-color: var(--light-navy);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform var(--transition-speed) ease,
+    border-color var(--transition-speed) ease;
 }
-
-.heading {
-  font-family: var(--title-font);
-  font-size: 2.8rem; /* MODIFIKASI: Diperbesar */
-  color: #ffc400;
-  font-weight: normal;
-  margin-bottom: 25px;
-  position: relative; /* WOW: Untuk garis dekoratif */
+.event-container .section:hover {
+  transform: translateY(-5px);
+  border-color: var(--golden-glow);
 }
-
-/* WOW: Garis dekoratif pada judul */
-.heading::after {
-  content: "";
-  display: block;
-  width: 50px;
-  height: 2px;
-  background: var(--primary-color);
-  margin: 15px auto 0 auto;
-  opacity: 0.7;
+.event-container .heading {
+  font-size: clamp(1.8rem, 5vw, 2rem);
+  margin-bottom: 15px;
+  color: var(--golden-glow);
 }
-
-.section p {
-  color: var(--secondary-color);
-  font-size: 1.05rem; /* MODIFIKASI: Sedikit diperbesar */
-  font-weight: 400;
+.event-container b {
+  color: var(--golden-glow);
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 10px;
 }
 
 /* --- Countdown --- */
-.countdown-section {
-  /* WOW: Background gradien */
-  background: linear-gradient(
-    135deg,
-    var(--primary-darker),
-    var(--primary-color)
-  );
-  color: #fff;
-}
-
-.countdown-section .heading::after {
-  background: #fff; /* WOW: Garis dekoratif putih */
-}
-
 .countdown {
   display: flex;
   justify-content: center;
   gap: 15px;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
-
-.countdown > div {
-  background: rgba(255, 255, 255, 0.15); /* MODIFIKASI: Lebih terlihat */
-  border-radius: 15px; /* MODIFIKASI: Lebih rounded */
-  padding: 15px;
-  width: 90px;
-  backdrop-filter: blur(5px); /* WOW: Efek glass */
+.countdown div {
+  background: transparent;
+  min-width: 80px;
 }
-
 .countdown span {
-  display: block;
+  font-family: var(--font-heading);
   font-size: 2.5rem;
-  font-weight: 700;
+  color: var(--golden-glow);
 }
-
 .countdown small {
   font-size: 0.8rem;
-  font-weight: 400;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--slate);
 }
 
-/* --- Map, Gallery, RSVP, Gift --- */
-.map {
+/* --- Maps & Button --- */
+iframe {
   width: 100%;
-  height: 350px;
-  border: none;
-  border-radius: 15px;
-  margin-bottom: 20px;
+  max-width: 600px;
+  height: 400px;
+  border-radius: 8px;
+  border: 1px solid rgba(136, 146, 176, 0.3);
+  filter: grayscale(1) contrast(1.2) opacity(0.8);
 }
 
 .map-button,
-#rsvpForm button,
-.gift-item button,
-.qr-section a {
-  display: inline-block;
-  background: linear-gradient(
-    135deg,
-    var(--primary-color),
-    var(--primary-darker)
-  ); /* WOW: Gradien pada tombol */
-  color: #fff;
-  padding: 14px 35px;
-  border: none;
-  border-radius: 50px;
-  text-decoration: none;
+form button,
+.bank-info button {
+  font-family: var(--font-body);
   font-weight: 500;
   font-size: 1rem;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 40px;
+  background-color: transparent;
+  color: var(--golden-glow);
+  border: 1px solid var(--golden-glow);
+  text-decoration: none;
+  border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(49, 73, 106, 0.3);
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
 
 .map-button:hover,
-#rsvpForm button:hover,
-.gift-item button:hover,
-.qr-section a:hover {
-  transform: translateY(-3px) scale(1.05); /* WOW: Efek hover 3D */
-  box-shadow: 0 8px 20px rgba(49, 73, 106, 0.4);
+form button:hover,
+.bank-info button:hover {
+  color: var(--dark-navy);
+  box-shadow: var(--shadow-glow);
 }
 
-.moment-section {
-  padding: 60px 15px;
-  background-color: #fafafa;
+.map-button::before,
+form button::before,
+.bank-info button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--golden-glow);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-speed) ease;
 }
 
-.moment-heading {
-  font-family: var(--title-font);
-  font-size: 4rem;
-  color: var(--primary-color);
-  margin-bottom: 30px;
+.map-button:hover::before,
+form button:hover::before,
+.bank-info button:hover::before {
+  transform: scaleX(1);
 }
 
+/* --- Gallery --- */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 15px;
+  width: 100%;
+  margin: 20px auto 0 auto;
 }
-
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 15px;
-  transition: all 0.4s ease;
+  border-radius: 8px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.85;
 }
 .gallery-item img:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  opacity: 1;
 }
 
-#rsvpForm input,
-#rsvpForm textarea {
+/* --- RSVP --- */
+#rsvpForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: 20px auto 0 auto;
+}
+#guestName,
+#guestMessage {
   width: 100%;
   padding: 15px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  font-family: var(--body-font);
+  border: 1px solid rgba(136, 146, 176, 0.3);
+  background-color: var(--light-navy);
+  border-radius: 8px;
+  font-family: var(--font-body);
   font-size: 1rem;
-  transition: border-color 0.3s;
+  color: var(--light-slate);
+  box-sizing: border-box;
+  transition: all var(--transition-speed) ease;
 }
-#rsvpForm input:focus,
-#rsvpForm textarea:focus {
+#guestName:focus,
+#guestMessage:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: var(--golden-glow);
+  box-shadow: 0 0 0 4px rgba(224, 196, 143, 0.2);
 }
 
+/* --- Gift Section --- */
+.gift-intro {
+  margin-bottom: 30px;
+}
+.gift-list {
+  max-width: 450px;
+  margin: 0 auto;
+}
 .gift-item {
-  background-color: #fafafa;
-  border: 1px solid #eee;
-  padding: 25px;
-  border-radius: 15px;
-  max-width: 340px;
-  /* TAMBAHKAN BARIS INI untuk membuatnya ke tengah secara horizontal */
-  margin-left: auto;
-  margin-right: auto;
-  /* Menambahkan margin bawah agar ada jarak jika ada item lain di bawahnya */
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid rgba(136, 146, 176, 0.2);
+  background-color: var(--light-navy);
+  border-radius: 8px;
 }
-.bank-info .account-number {
-  font-weight: 700;
-  font-size: 1.2rem;
+.bank-logo {
+  width: 80px;
+  filter: grayscale(1) brightness(2);
 }
 
-/* --- Closing & Footer --- */
-.closing-wrapper {
-  background: linear-gradient(
-    135deg,
-    var(--primary-darker),
-    var(--primary-color)
-  );
-  color: #fff;
-  padding: 60px 20px;
-}
-
+/* --- Closing --- */
 .closing-wrapper p {
-  font-size: 1rem;
-  font-weight: 300;
-  margin-bottom: 1em;
   max-width: 550px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto;
 }
-
 .closing-names {
-  font-family: var(--title-font);
-  font-size: 3rem;
-  margin-top: 30px;
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 8vw, 3rem); /* [DIUBAH] Responsif */
+  color: var(--light-slate);
+  margin-top: 50px;
 }
 
 .site-footer {
-  padding: 25px;
+  padding: 40px 20px 20px 20px;
+  color: var(--slate);
+  font-size: 1.2rem; /* [DIUBAH] Sedikit lebih besar */
+  text-align: center; /* Tambahkan baris ini */
+}
+.site-footer .love {
+  color: var(--golden-glow);
   font-size: 1.2rem;
-  color: #fafafa;
+  display: inline-block;
+  transform: translateY(1px);
+}
+.site-footer strong {
+  /* [BARU] Styling untuk nama di footer */
+  font-weight: 500;
+  color: var(--light-slate);
 }
 
-/* --- Tombol Suara --- */
+/* --- Audio Button --- */
 #soundToggle {
-  /* Sama seperti sebelumnya, sudah bagus */
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 50px;
-  height: 50px;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  bottom: 25px;
+  right: 25px;
+  width: 55px;
+  height: 55px;
+  background-color: var(--light-navy);
+  border: 1px solid var(--golden-glow);
   border-radius: 50%;
+  color: var(--golden-glow);
   font-size: 1.5rem;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-}
-
-/* --- Media Queries untuk Responsif --- */
-@media (max-width: 768px) {
-  /* MODIFIKASI: Ukuran font mobile diperbesar */
-  body {
-    font-size: 18px; /* Set base font size */
-    background-image: url("../assets/bg-blue.jpg");
-  }
-
-  .groom-name,
-  .bride-name {
-    font-size: 3rem;
-  }
-  .and-symbol {
-    font-size: 2.2rem;
-  }
-  .heading {
-    font-size: 2.5rem;
-  }
-  .moment-heading {
-    font-size: 3rem;
-  }
-
-  .section {
-    margin: 15px;
-    padding: 25px;
-  }
-  .text-box {
-    padding: 40px 15px;
-  }
-
-  /* MODIFIKASI: Ukuran font paragraf di mobile */
-  .greeting,
-  .invitation-text,
-  .quote,
-  .surah,
-  .section p,
-  .couple-details .desc {
-    font-size: 1.3rem;
-  }
-
-  .countdown > div {
-    width: 75px;
-    padding: 12px;
-  }
-  .countdown span {
-    font-size: 2rem;
-  }
+  box-shadow: var(--shadow-glow);
 }

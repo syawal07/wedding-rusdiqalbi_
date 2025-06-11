@@ -1,5 +1,19 @@
-/* Import Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap");
+/* [REDESIGN] Import Google Fonts yang lebih artistik dan mewah */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Inter:wght@300;400;500&display=swap");
+
+/* [REDESIGN] Variabel CSS untuk tema "Golden Midnight" */
+:root {
+  --dark-navy: #0a192f; /* Biru malam yang sangat gelap */
+  --light-navy: #112240; /* Biru malam untuk aksen */
+  --golden-glow: #ffd700; /* Emas yang bersinar sebagai aksen utama */
+  --light-slate: #ccd6f6; /* Warna teks utama (putih kebiruan) */
+  --slate: #8892b0; /* Warna teks sekunder */
+  --white: #ffffff;
+  --transition-speed: 0.4s;
+
+  --font-heading: "Cinzel Decorative", serif;
+  --font-body: "Inter", sans-serif;
+}
 
 /* Reset dan Pengaturan Dasar */
 * {
@@ -8,13 +22,47 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body,
 html {
   height: 100%;
-  font-family: "Montserrat", sans-serif;
-  color: #333;
-  line-height: 1.6;
-  overflow-x: hidden; /* Mencegah scroll horizontal */
+  font-family: var(--font-body);
+  color: var(--slate);
+  line-height: 1.8;
+  background-color: var(--dark-navy);
+  overflow: hidden; /* Mencegah scroll karena ada partikel animasi */
+  position: relative;
+}
+
+/* [BARU] Animasi Partikel Emas di Latar Belakang */
+@keyframes move-particles {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200vh; /* Dua kali tinggi layar agar partikel bisa bergerak jauh */
+  pointer-events: none;
+  z-index: 0;
+  animation: move-particles 50s linear infinite;
+}
+
+.particle {
+  position: absolute;
+  background: var(--golden-glow);
+  border-radius: 50%;
+  opacity: 0.6;
 }
 
 /* Kontainer Utama */
@@ -23,210 +71,264 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem 1rem;
 }
 
-/* Hero Section dengan Gambar Latar */
 .hero {
   width: 100%;
-  min-height: 100vh;
-  background-image: url("../assets/bg-blue.jpg"); /* Anda bisa ganti dengan URL gambar latar Anda */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  max-width: 700px;
   text-align: center;
-  padding: 20px;
+  position: relative;
+  padding: 3rem 1rem;
 }
 
-.overlay {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* Overlay putih transparan agar teks mudah dibaca */
-  padding: 40px 20px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  width: 100%;
+/* [REDESIGN] Kartu dihilangkan, diganti dengan ornamen sudut */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: drawIn 1.5s ease-out 0.5s forwards;
+}
+
+.hero::before {
+  top: 0;
+  left: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0,50 Q0,0 50,0 M0,50 L20,50 M0,50 Q5,45 15,35' stroke='%23ffd700' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+}
+
+.hero::after {
+  bottom: 0;
+  right: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M100,50 Q100,100 50,100 M100,50 L80,50 M100,50 Q95,55 85,65' stroke='%23ffd700' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+}
+
+@keyframes drawIn {
+  to {
+    opacity: 0.8;
+  }
+}
+
+/* [REDESIGN] Animasi masuk berurutan untuk konten */
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.subtitle,
+.title,
+.couple-photos,
+.invitation-box,
+#openBtn,
+.countdown-section {
+  opacity: 0;
+  animation: slideUpFadeIn 0.8s ease-out forwards;
+}
+
+/* Menambahkan delay untuk setiap elemen */
+.subtitle {
+  animation-delay: 0.8s;
+}
+.title {
+  animation-delay: 1s;
+}
+.couple-photos {
+  animation-delay: 1.2s;
+}
+.invitation-box {
+  animation-delay: 1.4s;
+}
+#openBtn {
+  animation-delay: 1.6s;
+}
+.countdown-section {
+  animation-delay: 1.8s;
 }
 
 /* Judul dan Subjudul */
 .subtitle {
-  font-size: 1.5rem;
-  color: #5c5c5c;
-  margin-bottom: 20px;
+  font-size: 1rem;
   font-weight: 400;
-  letter-spacing: 1px;
+  color: var(--golden-glow);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 1rem;
 }
 
 .title {
-  font-family: "Great Vibes", cursive;
-  font-size: 5rem;
-  color: #31496a; /* Diubah */
-  margin-top: 10px;
-  margin-bottom: 30px;
-  font-weight: normal;
+  font-family: var(--font-heading);
+  font-size: 4rem; /* Disesuaikan agar pas */
+  color: var(--light-slate);
+  margin: 0.5rem 0 1.5rem 0;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
-/* Foto Mempelai */
+/* [REDESIGN] Galeri Foto dengan bingkai emas bersinar */
 .couple-photos {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 2.5rem;
 }
 
 .couple-photo {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  border: 4px solid #31496a; /* Diubah */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 3px solid var(--golden-glow);
+  padding: 4px;
+  background-color: var(--dark-navy);
   object-fit: cover;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+  transition: box-shadow var(--transition-speed) ease;
+}
+
+.couple-photo:hover {
+  box-shadow: 0 0 35px rgba(255, 215, 0, 0.4);
 }
 
 /* Kotak Undangan untuk Tamu */
 .invitation-box {
-  margin: 30px auto;
-  padding: 20px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  margin: 3rem auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(136, 146, 176, 0.3);
 }
 
 .to,
-.guest,
 .location {
-  font-size: 1rem;
-  color: #555;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--slate);
+}
+
+.guest {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--light-slate);
+  margin: 5px 0;
 }
 
 .name {
-  font-size: 1.5rem;
+  font-family: var(--font-body);
+  font-size: 1.8rem;
   font-weight: 700;
-  color: #333;
-  margin: 10px 0;
+  color: var(--white);
+  margin: 0.5rem 0;
 }
 
-/* Tombol */
+/* [REDESIGN] Tombol dengan efek fill-up */
 #openBtn {
-  font-family: "Montserrat", sans-serif;
-  background-color: #31496a; /* Diubah */
-  color: #fff;
-  border: none;
-  padding: 12px 30px;
+  font-family: var(--font-body);
+  background-color: transparent;
+  color: var(--golden-glow);
+  border: 2px solid var(--golden-glow);
+  padding: 14px 45px;
   font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
   border-radius: 50px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 4px 15px rgba(49, 73, 106, 0.5); /* Diubah */
-  margin-top: 10px;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  overflow: hidden;
 }
 
 #openBtn:hover {
-  background-color: #2a3f5a; /* Diubah (versi lebih gelap untuk hover) */
-  transform: translateY(-2px);
+  color: var(--dark-navy);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
 
-/* Countdown Section */
+#openBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--golden-glow);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-speed) ease;
+}
+
+#openBtn:hover::before {
+  transform: scaleX(1);
+}
+
+/* [REDESIGN] Countdown minimalis */
 .countdown-section {
-  margin-top: 40px;
+  margin-top: 3.5rem;
 }
 
 .countdown-title {
-  font-size: 1.2rem;
-  color: #5c5c5c;
-  margin-bottom: 20px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--slate);
+  margin-bottom: 1.5rem;
 }
 
 .countdown {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 2rem;
 }
 
 .countdown > div {
-  background-color: #31496a; /* Diubah */
-  color: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  width: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.countdown > div:hover {
-  transform: scale(1.05);
+  color: var(--light-slate);
+  width: 90px;
 }
 
 .countdown span {
+  font-family: var(--font-body);
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 500;
+  color: var(--golden-glow);
 }
 
 .countdown small {
   font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--slate);
   text-transform: uppercase;
-  margin-top: 5px;
 }
 
 /* Tombol Suara */
 #soundToggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  /* ... (Styling dapat disesuaikan atau dibiarkan) ... */
+  background-color: var(--light-navy);
+  color: var(--golden-glow);
+  border: 1px solid var(--golden-glow);
 }
 
 /* Responsif untuk Layar Kecil (Mobile) */
 @media (max-width: 768px) {
-  .overlay {
-    padding: 30px 15px;
-  }
-
   .title {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
-
-  .subtitle {
-    font-size: 1.2rem;
-  }
-
   .couple-photo {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
   }
-
+  .hero::before,
+  .hero::after {
+    width: 100px;
+    height: 100px;
+  }
   .countdown {
-    gap: 10px;
-  }
-
-  .countdown > div {
-    padding: 10px;
-    width: 65px;
-  }
-
-  .countdown span {
-    font-size: 1.8rem;
-  }
-
-  .countdown small {
-    font-size: 0.7rem;
+    gap: 1rem;
+    flex-wrap: wrap;
   }
 }

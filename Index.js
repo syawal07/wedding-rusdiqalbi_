@@ -134,3 +134,132 @@ document.addEventListener("DOMContentLoaded", function () {
     elemenNama.textContent = "Tamu Undangan";
   }
 });
+const animatedSections = document.querySelectorAll(".animated-section");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+      }
+    });
+  },
+  {
+    threshold: 0.1, // Munculkan animasi saat 10% bagian terlihat
+  }
+);
+
+animatedSections.forEach((section) => {
+  observer.observe(section);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  // --- FUNGSI COUNTDOWN ---
+  const countdown = () => {
+    const countDate = new Date("June 19, 2025 10:00:00").getTime();
+    const now = new Date().getTime();
+    const gap = countDate - now;
+
+    if (gap > 0) {
+      const second = 1000;
+      const minute = second * 60;
+      const hour = minute * 60;
+      const day = hour * 24;
+
+      const d = Math.floor(gap / day);
+      const h = Math.floor((gap % day) / hour);
+      const m = Math.floor((gap % hour) / minute);
+      const s = Math.floor((gap % minute) / second);
+
+      document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+      document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+      document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+      document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+    } else {
+      // Jika waktu sudah lewat
+      document.getElementById("countdown").innerHTML =
+        "<p>Acara Telah Berlangsung</p>";
+    }
+  };
+  setInterval(countdown, 1000);
+
+  // --- FUNGSI TOMBOL MUSIK ---
+  const bgMusic = document.getElementById("bgMusic");
+  const soundToggle = document.getElementById("soundToggle");
+  let isPlaying = false;
+
+  // Autoplay setelah interaksi pertama
+  document.body.addEventListener(
+    "click",
+    () => {
+      if (!isPlaying) {
+        bgMusic.play();
+        soundToggle.innerHTML = "🔊";
+        isPlaying = true;
+      }
+    },
+    { once: true }
+  );
+
+  soundToggle.addEventListener("click", () => {
+    if (isPlaying) {
+      bgMusic.pause();
+      soundToggle.innerHTML = "🔇";
+    } else {
+      bgMusic.play();
+      soundToggle.innerHTML = "🔊";
+    }
+    isPlaying = !isPlaying;
+  });
+
+  // --- FUNGSI FORMULIR RSVP ---
+  const rsvpForm = document.getElementById("rsvpForm");
+  rsvpForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const guestName = document.getElementById("guestName").value;
+    const guestMessage = document.getElementById("guestMessage").value;
+    const phoneNumber = "6281234567890"; // Ganti dengan nomor WhatsApp Anda
+
+    const message = `Halo, saya ${guestName}. Selamat atas pernikahannya! ${guestMessage}`;
+    const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(whatsappURL, "_blank");
+  });
+
+  // --- FUNGSI ANIMASI SAAT SCROLL ---
+  const animatedElements = document.querySelectorAll(".animate-on-scroll");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      });
+    },
+    {
+      threshold: 0.1, // elemen akan muncul saat 10% terlihat
+    }
+  );
+
+  animatedElements.forEach((el) => {
+    observer.observe(el);
+  });
+});
+
+// --- FUNGSI SALIN NO. REKENING (ditempatkan di luar karena dipanggil oleh onclick) ---
+function copyToClipboard(elementId) {
+  const rekElement = document.getElementById(elementId);
+  const textToCopy = rekElement.innerText;
+
+  navigator.clipboard
+    .writeText(textToCopy)
+    .then(() => {
+      alert("Nomor rekening berhasil disalin!");
+    })
+    .catch((err) => {
+      console.error("Gagal menyalin: ", err);
+      alert("Gagal menyalin nomor rekening.");
+    });
+}
