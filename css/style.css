@@ -33,7 +33,7 @@ html {
   color: var(--slate);
   line-height: 1.8;
   background-color: var(--dark-navy);
-  overflow: hidden; /* Mencegah scroll karena ada partikel animasi */
+  overflow-x: hidden; /* [DIUBAH] Memperbaiki masalah scroll */
   position: relative;
 }
 
