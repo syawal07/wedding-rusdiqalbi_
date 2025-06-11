@@ -7,7 +7,7 @@
   --light-navy: #112240; /* Biru malam untuk aksen dan latar elemen */
   --golden-glow: #e0c48f; /* Emas yang lebih lembut dan elegan */
   --light-slate: #ccd6f6; /* Warna teks utama (putih kebiruan) */
-  --slate: #ffffff; /* Warna teks sekunder - Untuk teks yang kurang penting */
+  --slate: #8892b0; /* Warna teks sekunder - Untuk teks yang kurang penting */
   --white: #ffffff;
   --transition-speed: 0.4s;
 
@@ -70,7 +70,7 @@ html {
   opacity: 0.6;
 }
 
-/* [DIUBAH] Animasi Fade-in berurutan untuk elemen */
+/* Animasi Fade-in berurutan untuk elemen */
 @keyframes fadeInSlideUp {
   from {
     opacity: 0;
@@ -119,7 +119,7 @@ html {
 }
 .gallery-wrapper {
   animation-delay: 1.5s;
-} /* [DIUBAH] Target ke wrapper */
+}
 #rsvpForm {
   animation-delay: 1.7s;
 }
@@ -163,12 +163,10 @@ html {
 /* --- Header Section --- */
 .greeting,
 .wassalam {
-  font-family: "Lora", serif; /* Menggunakan Lora, dengan fallback serif */
-  color: var(--slate);
-  font-size: 1.8rem;
+  font-family: var(--font-body);
   font-weight: 400;
-  line-height: 1.6;
-  margin-bottom: 1em;
+  font-size: 1.1rem;
+  color: var(--slate);
 }
 
 .wedding-title {
@@ -178,7 +176,11 @@ html {
 .bride-name,
 .groom-name {
   font-family: var(--font-heading);
-  font-size: clamp(3rem, 10vw, 4rem);
+  font-size: clamp(
+    3rem,
+    10vw,
+    4.5rem
+  ); /* Disesuaikan untuk jangkauan lebih luas */
   font-weight: 700;
   color: var(--light-slate);
   line-height: 1.2;
@@ -192,36 +194,20 @@ html {
   line-height: 1;
 }
 
+/* Peningkatan readability untuk teks paragraf */
 .invitation-text,
 .quote,
 .desc,
 .gift-intro,
 .closing-wrapper p,
 .event-container p {
-  /* REKOMENDASI UKURAN FONT: Sedikit lebih besar dan responsif */
-  font-size: clamp(1.05rem, 1rem + 0.5vw, 1.3rem);
-
-  /* REKOMENDASI UTAMA: Gunakan ketebalan standar untuk readability */
-  font-weight: 400; /* WAJIB diubah dari 300 ke 400 */
-
-  /* REKOMENDASI UTAMA: Gunakan warna dengan kontras yang baik */
-  color: var(--slate); /* Ganti dari --light-slate ke warna lebih gelap */
-
-  /* Jarak antar baris yang ideal agar teks "bernafas" */
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
   line-height: 1.8;
-
-  /* Sentuhan elegan: sedikit jarak antar huruf */
-  letter-spacing: 0.2px;
-
-  /* Batasan lebar dan centering untuk kolom teks yang ideal */
-  max-width: 55ch; /* 'ch' adalah unit karakter, lebih ideal untuk teks */
-  margin-inline: auto; /* Cara modern untuk 'margin-left/right: auto' */
-}
-
-/* Styling khusus agar kutipan (quote) lebih menonjol */
-.quote {
-  font-style: italic;
-  text-wrap: balance; /* Menyeimbangkan baris teks (untuk browser modern) */
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 300;
+  color: var(--light-slate);
 }
 
 .quote {
@@ -236,13 +222,12 @@ html {
   color: var(--golden-glow);
   margin-top: 5px;
   display: block;
-  font-size: 1.3rem;
 }
 
 /* --- Couple Section --- */
 .photo-container {
-  width: 160px;
-  height: 160px;
+  width: clamp(140px, 30vw, 160px); /* Ukuran foto responsif */
+  height: clamp(140px, 30vw, 160px);
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto 25px auto;
@@ -411,9 +396,12 @@ form button:hover::before,
 }
 
 /* --- Gallery --- */
+.gallery-wrapper {
+  padding-bottom: 0;
+}
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
   width: 100%;
   margin: 20px auto 0 auto;
@@ -421,6 +409,7 @@ form button:hover::before,
 .gallery-item img {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 8px;
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -488,25 +477,23 @@ form button:hover::before,
 }
 .closing-names {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 8vw, 3rem); /* [DIUBAH] Responsif */
+  font-size: clamp(2.5rem, 8vw, 3rem);
   color: var(--light-slate);
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .site-footer {
   padding: 40px 20px 20px 20px;
   color: var(--slate);
-  font-size: 1.2rem; /* [DIUBAH] Sedikit lebih besar */
-  text-align: center; /* Tambahkan baris ini */
+  font-size: 0.95rem;
 }
 .site-footer .love {
   color: var(--golden-glow);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   display: inline-block;
   transform: translateY(1px);
 }
 .site-footer strong {
-  /* [BARU] Styling untuk nama di footer */
   font-weight: 500;
   color: var(--light-slate);
 }
@@ -526,4 +513,67 @@ form button:hover::before,
   cursor: pointer;
   z-index: 1000;
   box-shadow: var(--shadow-glow);
+}
+
+/* [DIUBAH] Blok Media Query yang lebih komprehensif */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 30px 15px;
+  }
+
+  .event-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .event-container .section {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bride-name,
+  .groom-name {
+    line-height: 1.3; /* Mencegah tumpang tindih pada layar sangat kecil */
+  }
+
+  .couple-details .name {
+    font-size: 2rem;
+  }
+
+  .closing-names {
+    font-size: 2.2rem;
+  }
+
+  .countdown {
+    gap: 10px;
+  }
+
+  .countdown div {
+    min-width: 70px;
+  }
+
+  .countdown span {
+    font-size: 2rem;
+  }
+
+  .map-button,
+  form button,
+  .bank-info button {
+    padding: 12px 30px;
+    font-size: 0.95rem;
+  }
+}
+
+.site-footer {
+  padding: 40px 20px 20px 20px;
+  color: var(--slate);
+  font-size: 0.95rem;
+  align-items: center;
 }
