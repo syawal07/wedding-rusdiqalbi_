@@ -156,7 +156,7 @@ animatedSections.forEach((section) => {
 document.addEventListener("DOMContentLoaded", function () {
   // --- FUNGSI COUNTDOWN ---
   const countdown = () => {
-    const countDate = new Date("June 19, 2025 10:00:00").getTime();
+    const countDate = new Date("Desember 31, 2025 10:00:00").getTime();
     const now = new Date().getTime();
     const gap = countDate - now;
 
